@@ -15,6 +15,26 @@ zf.extractall("appsrc")
 print("Extracted:", len(zf.namelist()), "files")
 PY
 
+echo "==> Override frontend if frontend_override/index.html exists"
+if [ -f "frontend_override/index.html" ]; then
+  FRONT_INDEX=$(python - <<'PY'
+import os
+candidates=[]
+for root, dirs, files in os.walk("appsrc"):
+    if root.endswith("frontend") and "index.html" in files:
+        candidates.append(os.path.join(root, "index.html"))
+candidates.sort(key=len)
+print(candidates[0] if candidates else "")
+PY
+)
+  if [ -n "$FRONT_INDEX" ]; then
+    cp "frontend_override/index.html" "$FRONT_INDEX"
+    echo "==> Frontend overridden: $FRONT_INDEX"
+  else
+    echo "WARNING: frontend/index.html not found inside zip"
+  fi
+fi
+
 echo "==> Find requirements.txt inside zip"
 REQ=$(python - <<'PY'
 import os
