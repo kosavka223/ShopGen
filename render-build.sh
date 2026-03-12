@@ -14,31 +14,6 @@ zf.extractall("appsrc")
 print("Extracted:", len(zf.namelist()), "files")
 PY
 
-echo "==> Prepare frontend"
-if [ -f "frontend_override/index.html" ]; then
-  FRONT_INDEX=$(python - <<'PY'
-import os
-candidates = []
-for root, dirs, files in os.walk("appsrc"):
-    if root.endswith("frontend") and "index.html" in files:
-        candidates.append(os.path.join(root, "index.html"))
-candidates.sort(key=len)
-print(candidates[0] if candidates else "")
-PY
-)
-
-  if [ -n "$FRONT_INDEX" ]; then
-    cp "frontend_override/index.html" "$FRONT_INDEX"
-    echo "==> Frontend overridden: $FRONT_INDEX"
-  else
-    mkdir -p appsrc/gen/project/frontend
-    cp "frontend_override/index.html" appsrc/gen/project/frontend/index.html
-    echo "==> Frontend created: appsrc/gen/project/frontend/index.html"
-  fi
-else
-  echo "WARNING: frontend_override/index.html not found"
-fi
-
 echo "==> Find requirements.txt inside zip"
 REQ=$(python - <<'PY'
 import os
@@ -53,38 +28,36 @@ PY
 
 if [ -z "$REQ" ]; then
   echo "ERROR: requirements.txt not found inside zip"
-  echo "Open the zip on your PC and make sure backend/requirements.txt exists."
   exit 1
 fi
 
 BACKEND_DIR=$(dirname "$REQ")
+PROJECT_DIR=$(dirname "$BACKEND_DIR")
+FRONTEND_DIR="$PROJECT_DIR/frontend"
+
 echo "==> Backend directory: $BACKEND_DIR"
+echo "==> Frontend directory: $FRONTEND_DIR"
+
+echo "==> Prepare frontend"
+mkdir -p "$FRONTEND_DIR"
+
+if [ -f "frontend_override/index.html" ]; then
+  cp "frontend_override/index.html" "$FRONTEND_DIR/index.html"
+  echo "==> Frontend ready: $FRONTEND_DIR/index.html"
+else
+  echo "WARNING: frontend_override/index.html not found"
+fi
 
 echo "==> Install deps + gunicorn"
 python -m pip install --upgrade pip
 python -m pip install -r "$REQ" gunicorn
 
-echo "==> Create wsgi.py (entrypoint for gunicorn) + serve frontend on /"
+echo "==> Create wsgi.py"
 python - <<PY
 from pathlib import Path
 
-backend = Path("$BACKEND_DIR").resolve()
-
-frontend_candidates = [
-    backend.parent / "frontend",
-    backend.parent.parent / "frontend",
-    backend.parent.parent.parent / "frontend",
-]
-
-frontend = None
-for c in frontend_candidates:
-    if (c / "index.html").exists():
-        frontend = c
-        break
-
-if frontend is None:
-    frontend = backend
-
+backend = Path(r"$BACKEND_DIR").resolve()
+frontend = Path(r"$FRONTEND_DIR").resolve()
 wsgi = backend / "wsgi.py"
 
 wsgi.write_text(f'''
