@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ZIP_NAME="gen.zip"   # <-- поменяй на gen.zip если переименовал
+ZIP_NAME="gen.zip"
 
 echo "==> Extract $ZIP_NAME to ./appsrc"
 rm -rf appsrc
 mkdir -p appsrc
 
-# Распаковка через Python (на Render Python точно есть)
 python - <<PY
 import zipfile
 zf = zipfile.ZipFile("$ZIP_NAME")
@@ -15,11 +14,11 @@ zf.extractall("appsrc")
 print("Extracted:", len(zf.namelist()), "files")
 PY
 
-echo "==> Override frontend if frontend_override/index.html exists"
+echo "==> Prepare frontend"
 if [ -f "frontend_override/index.html" ]; then
   FRONT_INDEX=$(python - <<'PY'
 import os
-candidates=[]
+candidates = []
 for root, dirs, files in os.walk("appsrc"):
     if root.endswith("frontend") and "index.html" in files:
         candidates.append(os.path.join(root, "index.html"))
@@ -27,18 +26,23 @@ candidates.sort(key=len)
 print(candidates[0] if candidates else "")
 PY
 )
+
   if [ -n "$FRONT_INDEX" ]; then
     cp "frontend_override/index.html" "$FRONT_INDEX"
     echo "==> Frontend overridden: $FRONT_INDEX"
   else
-    echo "WARNING: frontend/index.html not found inside zip"
+    mkdir -p appsrc/gen/project/frontend
+    cp "frontend_override/index.html" appsrc/gen/project/frontend/index.html
+    echo "==> Frontend created: appsrc/gen/project/frontend/index.html"
   fi
+else
+  echo "WARNING: frontend_override/index.html not found"
 fi
 
 echo "==> Find requirements.txt inside zip"
 REQ=$(python - <<'PY'
 import os
-candidates=[]
+candidates = []
 for root, dirs, files in os.walk("appsrc"):
     if "requirements.txt" in files:
         candidates.append(os.path.join(root, "requirements.txt"))
@@ -66,23 +70,23 @@ from pathlib import Path
 
 backend = Path("$BACKEND_DIR").resolve()
 
-# ищем frontend/index.html рядом или уровнем выше
 frontend_candidates = [
     backend.parent / "frontend",
     backend.parent.parent / "frontend",
     backend.parent.parent.parent / "frontend",
 ]
+
 frontend = None
 for c in frontend_candidates:
     if (c / "index.html").exists():
         frontend = c
         break
 
+if frontend is None:
+    frontend = backend
+
 wsgi = backend / "wsgi.py"
 
-# wsgi делает две вещи:
-# 1) запускает Flask app (через create_app() или app)
-# 2) отдаёт index.html по "/"
 wsgi.write_text(f'''
 from pathlib import Path
 from flask import send_from_directory
@@ -91,10 +95,9 @@ try:
     from app import create_app
     app = create_app()
 except Exception:
-    # если в app.py сразу app = Flask(...)
     from app import app
 
-FRONTEND_DIR = Path(r"{frontend if frontend else backend}").resolve()
+FRONTEND_DIR = Path(r"{frontend}").resolve()
 
 @app.get("/")
 def home():
@@ -102,6 +105,7 @@ def home():
 ''')
 
 print("Created", wsgi)
+print("Frontend dir:", frontend)
 PY
 
 echo "==> Build done"
