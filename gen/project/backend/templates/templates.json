@@ -1,0 +1,17 @@
+{
+  "smartphone": [
+    "{adj} {title}{use_case_phrase}{screen_phrase}{perf_phrase}{battery_phrase}{camera_phrase}{extra_phrase}{feature_phrase}{cta}",
+    "{title}{use_case_phrase}{perf_phrase}{screen_phrase}{battery_phrase}{camera_phrase}{extra_phrase}{feature_phrase}{cta}",
+    "{adj} {title}{use_case_phrase}{screen_phrase}{camera_phrase}{battery_phrase}{perf_phrase}{extra_phrase}{feature_phrase}{cta}"
+  ],
+  "sneakers": [
+    "{adj} {title}. {purpose_phrase}{size_phrase}{material_phrase}{season_phrase}{color_phrase}{comfort_phrase}{feature_phrase}{cta}",
+    "{title}. {purpose_phrase}{material_phrase}{season_phrase}{color_phrase}{size_phrase}{comfort_phrase}{feature_phrase}{cta}",
+    "{adj} {title}. {purpose_phrase}{comfort_phrase}{material_phrase}{color_phrase}{feature_phrase}{cta}"
+  ],
+  "gpu": [
+    "{adj} {title}. {platform_phrase}{memory_phrase}{clock_phrase}{cooling_phrase}{gpu_use_case_phrase}{gpu_feature_phrase}{feature_phrase}{cta}",
+    "{title}. {platform_phrase}{cooling_phrase}{memory_phrase}{clock_phrase}{gpu_use_case_phrase}{gpu_feature_phrase}{feature_phrase}{cta}",
+    "{adj} {title}. {memory_phrase}{platform_phrase}{cooling_phrase}{gpu_feature_phrase}{feature_phrase}{cta}"
+  ]
+}
