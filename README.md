@@ -48,19 +48,3 @@ python -m http.server 8000
 curl "http://127.0.0.1:5000/api/history?category=sneakers&limit=10"
 ```
 
-## Формат входных данных
-
-Рекомендуемый формат (как в текущем `index.html`):
-
-```json
-{
-  "category": "sneakers",
-  "attributes": {
-    "brand": "Reebok",
-    "model": "Royal",
-    "purpose": "город"
-  }
-}
-```
-
-API также принимает старый “плоский” формат (частично), но лучше использовать `attributes`.
