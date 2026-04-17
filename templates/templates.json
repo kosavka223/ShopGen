@@ -1,11 +1,17 @@
 {
   "smartphone": [
-    "{brand} {model} — современный смартфон с экраном {screen_size_in} дюйма, {ram_gb} ГБ оперативной памяти и накопителем {storage_gb} ГБ. Подходит для повседневных задач, общения и мультимедиа."
+    "{adj} {title}{use_case_phrase}{screen_phrase}{perf_phrase}{battery_phrase}{camera_phrase}{extra_phrase}{feature_phrase}{cta}",
+    "{title}{use_case_phrase}{perf_phrase}{screen_phrase}{battery_phrase}{camera_phrase}{extra_phrase}{feature_phrase}{cta}",
+    "{adj} {title}{use_case_phrase}{screen_phrase}{camera_phrase}{battery_phrase}{perf_phrase}{extra_phrase}{feature_phrase}{cta}"
   ],
   "sneakers": [
-    "{brand} {model} — удобные кроссовки для {purpose}. Размер {size_eu}, цвет {color}, верх выполнен из материала: {material_upper}. Отличный выбор на каждый день."
+    "{adj} {title}. {purpose_phrase}{size_phrase}{material_phrase}{season_phrase}{color_phrase}{comfort_phrase}{feature_phrase}{cta}",
+    "{title}. {purpose_phrase}{material_phrase}{season_phrase}{color_phrase}{size_phrase}{comfort_phrase}{feature_phrase}{cta}",
+    "{adj} {title}. {purpose_phrase}{comfort_phrase}{material_phrase}{color_phrase}{feature_phrase}{cta}"
   ],
   "gpu": [
-    "{manufacturer} {version} — видеокарта для {platform} с объёмом памяти {memory_gb} ГБ и системой охлаждения: {cooling}. Подходит для игр, работы и графических задач."
+    "{adj} {title}. {platform_phrase}{memory_phrase}{clock_phrase}{cooling_phrase}{gpu_use_case_phrase}{gpu_feature_phrase}{feature_phrase}{cta}",
+    "{title}. {platform_phrase}{cooling_phrase}{memory_phrase}{clock_phrase}{gpu_use_case_phrase}{gpu_feature_phrase}{feature_phrase}{cta}",
+    "{adj} {title}. {memory_phrase}{platform_phrase}{cooling_phrase}{gpu_feature_phrase}{feature_phrase}{cta}"
   ]
 }
