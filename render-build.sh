@@ -1,28 +1,32 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BACKEND_DIR="gen/project/backend"
-
-echo "==> Check backend dir: $BACKEND_DIR"
-if [ ! -d "$BACKEND_DIR" ]; then
-  echo "ERROR: $BACKEND_DIR not found"
-  find . -maxdepth 4 -type f | sort || true
-  exit 1
-fi
-
-if [ ! -f "$BACKEND_DIR/requirements.txt" ]; then
-  echo "ERROR: requirements.txt not found in $BACKEND_DIR"
-  exit 1
-fi
-
 echo "==> Install dependencies"
 python -m pip install --upgrade pip
-python -m pip install -r "$BACKEND_DIR/requirements.txt" gunicorn
+python -m pip install -r requirements.txt gunicorn
 
 echo "==> Create wsgi.py"
-cat > "$BACKEND_DIR/wsgi.py" <<'PY'
+
+cat > wsgi.py <<'PY'
+from pathlib import Path
+from flask import send_from_directory, jsonify
 from app import create_app
+
 app = create_app()
+
+FRONTEND_DIR = Path("frontend_override").resolve()
+
+@app.get("/healthz")
+def healthz():
+    return jsonify({"ok": True})
+
+@app.route("/", defaults={"path": "index.html"})
+@app.route("/<path:path>")
+def serve_frontend(path):
+    file_path = FRONTEND_DIR / path
+    if file_path.exists():
+        return send_from_directory(FRONTEND_DIR, path)
+    return send_from_directory(FRONTEND_DIR, "index.html")
 PY
 
 echo "==> Build done"
