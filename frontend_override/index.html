@@ -306,6 +306,11 @@
       transition: .18s ease;
     }
 
+    textarea[readonly]{
+      cursor: default;
+      opacity: .82;
+    }
+
     select{
       appearance:none;
       -webkit-appearance:none;
@@ -446,7 +451,6 @@
       gap:10px;
     }
 
-    /* ВАЖНО: теперь это textarea, поэтому текст можно редактировать */
     .outputText{
       white-space: pre-wrap;
       line-height: 1.55;
@@ -691,7 +695,7 @@
         <div class="cardHead">
           <div>
             <h2>Результат</h2>
-            <div class="sub">Текст можно редактировать перед копированием.</div>
+            <div class="sub">До генерации текст заблокирован. После генерации его можно редактировать.</div>
           </div>
         </div>
 
@@ -703,8 +707,7 @@
             <span class="badge" id="outBadge">—</span>
           </div>
 
-          <!-- ВАЖНО: здесь теперь textarea, поэтому пользователь может редактировать результат -->
-          <textarea class="outputText" id="outText">Нажми “Сгенерировать”.</textarea>
+          <textarea class="outputText" id="outText" readonly>Нажми “Сгенерировать”.</textarea>
         </div>
 
         <div class="history">
@@ -864,12 +867,19 @@
       return payload;
     }
 
-    function setOutput(title, badge, text){
+    function setOutput(title, badge, text, editable = true){
       $("outTitle").textContent = title;
       $("outBadge").textContent = badge;
 
-      // ВАЖНО: у textarea надо менять value, а не textContent
-      $("outText").value = text;
+      const out = $("outText");
+
+      out.value = text;
+
+      if(editable){
+        out.readOnly = false;
+      } else {
+        out.readOnly = true;
+      }
     }
 
     function getOutputText(){
@@ -924,7 +934,7 @@
         const item = j.results?.[0];
         const desc = item?.description || "—";
 
-        setOutput("Готово", payload.category, desc);
+        setOutput("Готово", payload.category, desc, true);
         setStatus("OK. Теперь текст можно редактировать в окне результата.", true);
 
         await loadHistory();
@@ -986,7 +996,7 @@
           div.querySelector(".hText").textContent = text;
 
           div.addEventListener("click", () => {
-            setOutput("История", cat, text);
+            setOutput("История", cat, text, true);
             setStatus("Текст из истории открыт. Его тоже можно редактировать перед копированием.", true);
           });
 
@@ -998,7 +1008,6 @@
     }
 
     function copyResult(){
-      // ВАЖНО: копируем value из textarea, то есть уже отредактированный текст
       const text = getOutputText();
 
       if(!text.trim()){
@@ -1022,7 +1031,7 @@
 
       $("seed").value = "";
 
-      setOutput("Готово", "—", "Нажми “Сгенерировать”.");
+      setOutput("Готово", "—", "Нажми “Сгенерировать”.", false);
       setStatus("", true);
     }
 
@@ -1032,6 +1041,9 @@
       setActiveTab(CURRENT_CAT);
       renderFields(CURRENT_CAT);
       loadHistory();
+
+      setOutput("Готово", "—", "Нажми “Сгенерировать”.", false);
+      setStatus("", true);
     }
 
     $("tabSmartphone").addEventListener("click", () => switchCategory("smartphone"));
@@ -1045,6 +1057,7 @@
 
     setActiveTab(CURRENT_CAT);
     renderFields(CURRENT_CAT);
+    setOutput("Готово", "—", "Нажми “Сгенерировать”.", false);
     ping();
     loadHistory();
   </script>
