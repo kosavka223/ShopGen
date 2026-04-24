@@ -50,6 +50,7 @@
       pointer-events:none;
       z-index:-1;
     }
+
     @keyframes drift{
       0%{ transform: translate3d(-2%, -1%, 0) scale(1.02); }
       100%{ transform: translate3d(2%, 2%, 0) scale(1.08); }
@@ -61,6 +62,7 @@
       padding: 26px 18px 48px;
       animation: pageIn .55s ease-out both;
     }
+
     @keyframes pageIn{
       from{ opacity:0; transform: translateY(10px); }
       to{ opacity:1; transform: translateY(0); }
@@ -73,21 +75,26 @@
       gap:14px;
       margin-bottom: 18px;
     }
+
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
     }
+
     .logo{
-      width:42px;height:42px;
+      width:42px;
+      height:42px;
       border-radius: 14px;
       background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(34,197,94,.85));
       box-shadow: 0 10px 30px rgba(124,58,237,.25);
-      display:grid; place-items:center;
+      display:grid;
+      place-items:center;
       transform: translateZ(0);
       position:relative;
       overflow:hidden;
     }
+
     .logo:before{
       content:"";
       position:absolute;
@@ -97,11 +104,17 @@
       animation: shine 2.8s ease-in-out infinite;
       opacity:.55;
     }
+
     @keyframes shine{
       0%,100%{ transform: translateX(-12%) rotate(15deg); opacity:.35; }
       50%{ transform: translateX(12%) rotate(15deg); opacity:.65; }
     }
-    .logo svg{ position:relative; z-index:1; opacity:.95; }
+
+    .logo svg{
+      position:relative;
+      z-index:1;
+      opacity:.95;
+    }
 
     .titleBlock h1{
       margin:0;
@@ -120,13 +133,20 @@
       border:1px solid var(--stroke);
       backdrop-filter: blur(10px);
     }
-    .pill small{ color: var(--muted2); }
+
+    .pill small{
+      color: var(--muted2);
+    }
+
     .dot{
-      width:10px;height:10px;border-radius:99px;
+      width:10px;
+      height:10px;
+      border-radius:99px;
       background: var(--accent2);
       box-shadow: 0 0 0 6px rgba(34,197,94,.14);
       animation: pulse 1.8s ease-in-out infinite;
     }
+
     @keyframes pulse{
       0%,100%{ transform: scale(1); opacity: .95; }
       50%{ transform: scale(1.15); opacity: .75; }
@@ -137,8 +157,11 @@
       grid-template-columns: 1.05fr .95fr;
       gap: 16px;
     }
+
     @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
+      .grid{
+        grid-template-columns: 1fr;
+      }
     }
 
     .card{
@@ -151,6 +174,7 @@
       position:relative;
       overflow:hidden;
     }
+
     .card:before{
       content:"";
       position:absolute;
@@ -168,12 +192,14 @@
       position:relative;
       flex-wrap:wrap;
     }
+
     .cardHead h2{
       margin:0;
       font-size: 14px;
       letter-spacing:.2px;
       color: rgba(255,255,255,.92);
     }
+
     .cardHead .sub{
       margin-top:6px;
       font-size:12px;
@@ -192,6 +218,7 @@
       max-width: 560px;
       position:relative;
     }
+
     .tab{
       border:0;
       background: transparent;
@@ -210,16 +237,21 @@
       min-height: 46px;
       white-space: nowrap;
     }
+
     .tab svg{
       opacity:.85;
       flex-shrink:0;
     }
+
     .tab.active{
       background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(99,102,241,.65));
       color: white;
       box-shadow: 0 10px 28px rgba(124,58,237,.25);
     }
-    .tab:hover{ transform: translateY(-1px); }
+
+    .tab:hover{
+      transform: translateY(-1px);
+    }
 
     @media (max-width: 760px){
       .tabs{
@@ -240,13 +272,17 @@
       margin-top: 12px;
       position:relative;
     }
+
     .row{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:12px;
     }
+
     @media (max-width: 560px){
-      .row{ grid-template-columns: 1fr; }
+      .row{
+        grid-template-columns: 1fr;
+      }
     }
 
     label{
@@ -256,7 +292,9 @@
       margin: 0 0 6px;
     }
 
-    input, select, textarea{
+    input,
+    select,
+    textarea{
       width:100%;
       box-sizing:border-box;
       border-radius: 14px;
@@ -296,12 +334,18 @@
       color: #ffffff;
     }
 
-    input:focus, select:focus, textarea:focus{
+    input:focus,
+    select:focus,
+    textarea:focus{
       box-shadow: var(--focus);
       border-color: rgba(124,58,237,.45);
       transform: translateY(-1px);
     }
-    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.35); }
+
+    input::placeholder,
+    textarea::placeholder{
+      color: rgba(255,255,255,.35);
+    }
 
     .btnRow{
       display:flex;
@@ -309,6 +353,7 @@
       flex-wrap:wrap;
       margin-top: 6px;
     }
+
     .btn{
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.06);
@@ -323,15 +368,27 @@
       align-items:center;
       gap:10px;
     }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
-    .btn:active{ transform: translateY(0); }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.10);
+    }
+
+    .btn:active{
+      transform: translateY(0);
+    }
+
     .btn.primary{
       border-color: rgba(124,58,237,.35);
       background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(59,130,246,.75));
       color: #fff;
       box-shadow: 0 16px 40px rgba(124,58,237,.24);
     }
-    .btn.primary:hover{ filter: brightness(1.02); }
+
+    .btn.primary:hover{
+      filter: brightness(1.02);
+    }
+
     .btn.danger{
       border-color: rgba(239,68,68,.35);
       background: rgba(239,68,68,.10);
@@ -339,14 +396,20 @@
     }
 
     .spinner{
-      width:16px;height:16px;
+      width:16px;
+      height:16px;
       border-radius:99px;
       border: 2px solid rgba(255,255,255,.25);
       border-top-color: rgba(255,255,255,.95);
       animation: spin .7s linear infinite;
       display:none;
     }
-    @keyframes spin{ to{ transform: rotate(360deg); } }
+
+    @keyframes spin{
+      to{
+        transform: rotate(360deg);
+      }
+    }
 
     .status{
       margin-top: 10px;
@@ -354,8 +417,14 @@
       color: var(--muted);
       min-height: 18px;
     }
-    .status.ok{ color: rgba(34,197,94,.95); }
-    .status.err{ color: rgba(239,68,68,.95); }
+
+    .status.ok{
+      color: rgba(34,197,94,.95);
+    }
+
+    .status.err{
+      color: rgba(239,68,68,.95);
+    }
 
     .outputBox{
       border-radius: var(--radius2);
@@ -365,6 +434,7 @@
       position:relative;
       overflow:hidden;
     }
+
     .outputTitle{
       font-weight: 900;
       font-size: 14px;
@@ -375,12 +445,17 @@
       justify-content:space-between;
       gap:10px;
     }
+
+    /* ВАЖНО: теперь это textarea, поэтому текст можно редактировать */
     .outputText{
       white-space: pre-wrap;
       line-height: 1.55;
       color: rgba(255,255,255,.86);
       font-size: 14px;
-      min-height: 80px;
+      min-height: 160px;
+      resize: vertical;
+      font-family: inherit;
+      display:block;
     }
 
     .shimmer{
@@ -392,9 +467,14 @@
       display:none;
       pointer-events:none;
     }
+
     @keyframes shimmer{
-      0%{ transform: translateX(-100%); }
-      100%{ transform: translateX(100%); }
+      0%{
+        transform: translateX(-100%);
+      }
+      100%{
+        transform: translateX(100%);
+      }
     }
 
     .history{
@@ -403,17 +483,20 @@
       flex-direction:column;
       gap:10px;
     }
+
     .historyTop{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:10px;
     }
+
     .historyTop select{
       max-width: 220px;
       background-color: rgba(0,0,0,.22);
       color: var(--text);
     }
+
     .hList{
       display:flex;
       flex-direction:column;
@@ -422,6 +505,7 @@
       overflow:auto;
       padding-right: 4px;
     }
+
     .hItem{
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.05);
@@ -431,8 +515,23 @@
       transition: .16s ease;
       animation: pop .32s ease both;
     }
-    @keyframes pop{ from{ opacity:0; transform: translateY(6px);} to{ opacity:1; transform: translateY(0);} }
-    .hItem:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); }
+
+    @keyframes pop{
+      from{
+        opacity:0;
+        transform: translateY(6px);
+      }
+      to{
+        opacity:1;
+        transform: translateY(0);
+      }
+    }
+
+    .hItem:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+    }
+
     .hMeta{
       display:flex;
       gap:10px;
@@ -440,6 +539,7 @@
       justify-content:space-between;
       margin-bottom: 6px;
     }
+
     .badge{
       font-size: 11px;
       padding: 5px 10px;
@@ -449,6 +549,7 @@
       color: var(--muted);
       white-space:nowrap;
     }
+
     .hText{
       font-size: 12px;
       color: rgba(255,255,255,.78);
@@ -475,9 +576,23 @@
       pointer-events:none;
       transition: .22s ease;
     }
-    .toast.show{ opacity:1; transform: translateY(0); }
-    .toast .tTitle{ font-weight: 900; font-size: 13px; margin-bottom: 4px; }
-    .toast .tText{ font-size: 12px; color: var(--muted); line-height: 1.35; }
+
+    .toast.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    .toast .tTitle{
+      font-weight: 900;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .toast .tText{
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
   </style>
 </head>
 
@@ -523,12 +638,14 @@
               </svg>
               Смартфон
             </button>
+
             <button class="tab" id="tabSneakers" type="button" data-cat="sneakers">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M4 14c2-1 3-4 3-8h4c1 4 4 7 9 8v4H4v-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
               </svg>
               Кроссовки
             </button>
+
             <button class="tab" id="tabGpu" type="button" data-cat="gpu">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M7 7h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.6"/>
@@ -545,11 +662,11 @@
         <div class="form" id="form">
           <div class="row">
             <div>
-              <label>Seed (опционально)</label>
+              <label>Seed, опционально</label>
               <input id="seed" placeholder="например 123" />
             </div>
             <div>
-              <label>Кол-во (пока 1)</label>
+              <label>Кол-во, пока 1</label>
               <input value="1" disabled />
             </div>
           </div>
@@ -561,6 +678,7 @@
               <span class="spinner" id="sp"></span>
               <span>Сгенерировать</span>
             </button>
+
             <button class="btn" id="btnCopy" type="button">Скопировать</button>
             <button class="btn danger" id="btnClear" type="button">Очистить</button>
           </div>
@@ -573,17 +691,20 @@
         <div class="cardHead">
           <div>
             <h2>Результат</h2>
-            <div class="sub">Текст и история.</div>
+            <div class="sub">Текст можно редактировать перед копированием.</div>
           </div>
         </div>
 
         <div class="outputBox">
           <div class="shimmer" id="shimmer"></div>
+
           <div class="outputTitle">
             <span id="outTitle">Готово</span>
             <span class="badge" id="outBadge">—</span>
           </div>
-          <div class="outputText" id="outText">Нажми “Сгенерировать”.</div>
+
+          <!-- ВАЖНО: здесь теперь textarea, поэтому пользователь может редактировать результат -->
+          <textarea class="outputText" id="outText">Нажми “Сгенерировать”.</textarea>
         </div>
 
         <div class="history">
@@ -596,6 +717,7 @@
               <option value="gpu">Видеокарты</option>
             </select>
           </div>
+
           <div class="hList" id="hList"></div>
         </div>
       </section>
@@ -607,260 +729,324 @@
     <div class="tText" id="toastText"></div>
   </div>
 
-<script>
-  const $ = (id) => document.getElementById(id);
-  function toast(title, text){
-    $("toastTitle").textContent = title;
-    $("toastText").textContent = text;
-    $("toast").classList.add("show");
-    setTimeout(()=> $("toast").classList.remove("show"), 2600);
-  }
+  <script>
+    const $ = (id) => document.getElementById(id);
 
-  function setStatus(msg, ok=true){
-    const el = $("status");
-    el.textContent = msg || "";
-    el.className = "status " + (ok ? "ok" : "err");
-  }
-
-  function setActiveTab(cat){
-    const tabs = [$("tabSmartphone"), $("tabSneakers"), $("tabGpu")].filter(Boolean);
-    tabs.forEach(t => t.classList.toggle("active", t.dataset.cat === cat));
-  }
-
-  const SCHEMA = {
-    smartphone: [
-      {k:"brand", label:"Бренд", type:"text", ph:"Samsung"},
-      {k:"model", label:"Модель", type:"text", ph:"Galaxy A55"},
-      {k:"screen_size_in", label:"Экран (дюймы)", type:"number", step:"0.1", ph:"6.5"},
-      {k:"ram_gb", label:"RAM (ГБ)", type:"select", options:["4","6","8","12","16"]},
-      {k:"storage_gb", label:"Память (ГБ)", type:"select", options:["64","128","256","512","1024"]},
-      {k:"battery_mah", label:"Батарея (мА·ч)", type:"number", step:"1", ph:"5000"},
-      {k:"camera_mp", label:"Камера (Мп)", type:"number", step:"1", ph:"50"},
-      {k:"key_feature", label:"Особенность", type:"text", ph:"NFC, быстрая зарядка"}
-    ],
-    sneakers: [
-      {k:"brand", label:"Бренд", type:"text", ph:"Nike"},
-      {k:"model", label:"Модель", type:"text", ph:"Air Zoom"},
-      {k:"purpose", label:"Назначение", type:"select", options:["города","бега","тренировок","повседневной носки","спорта"]},
-      {k:"size_eu", label:"Размер EU", type:"number", step:"1", ph:"42"},
-      {k:"material_upper", label:"Материал верха", type:"text", ph:"сетка/кожа"},
-      {k:"season", label:"Сезон", type:"select", options:["лето","демисезон","зима","всесезон"]},
-      {k:"color", label:"Цвет", type:"select", options:["черный","белый","серый","синий","бежевый","красный"]},
-      {k:"key_feature", label:"Особенность", type:"text", ph:"амортизация, лёгкие"}
-    ],
-    gpu: [
-      {k:"manufacturer", label:"Производитель", type:"text", ph:"NVIDIA / AMD"},
-      {k:"version", label:"Версия", type:"text", ph:"RTX 4060 / RX 7600"},
-      {k:"platform", label:"Для (ПК/ноутбук)", type:"select", options:["ПК","ноутбук"]},
-      {k:"cooling", label:"Охлаждение", type:"select", options:["1 вентилятор","2 вентилятора","3 вентилятора","турбина","жидкостное"]},
-      {k:"memory_gb", label:"Память (ГБ)", type:"select", options:["2","4","6","8","10","12","16","20","24"]},
-      {k:"clock_mhz", label:"Частота (МГц)", type:"number", step:"1", ph:"например 2460"}
-    ],
-  };
-
-  let CURRENT_CAT = "smartphone";
-
-  function renderFields(cat){
-    const wrap = $("fields");
-    wrap.innerHTML = "";
-    const list = SCHEMA[cat] || [];
-
-    for(let i=0;i<list.length;i+=2){
-      const row = document.createElement("div");
-      row.className = "row";
-
-      [list[i], list[i+1]].forEach(field=>{
-        if(!field) return;
-        const box = document.createElement("div");
-        const lab = document.createElement("label");
-        lab.textContent = field.label;
-        box.appendChild(lab);
-
-        let el;
-        if(field.type === "select"){
-          el = document.createElement("select");
-          const opt0 = document.createElement("option");
-          opt0.value = "";
-          opt0.textContent = "— выбрать —";
-          el.appendChild(opt0);
-          (field.options||[]).forEach(v=>{
-            const o=document.createElement("option");
-            o.value=String(v); o.textContent=String(v);
-            el.appendChild(o);
-          });
-        } else {
-          el = document.createElement("input");
-          el.type = field.type || "text";
-          if(field.step) el.step = field.step;
-          if(field.ph) el.placeholder = field.ph;
-        }
-        el.dataset.key = field.k;
-        box.appendChild(el);
-        row.appendChild(box);
-      });
-
-      wrap.appendChild(row);
+    function toast(title, text){
+      $("toastTitle").textContent = title;
+      $("toastText").textContent = text;
+      $("toast").classList.add("show");
+      setTimeout(() => $("toast").classList.remove("show"), 2600);
     }
-  }
 
-  function getPayload(){
-    const attrs = {};
-    document.querySelectorAll("[data-key]").forEach(el=>{
-      const k = el.dataset.key;
-      const v = el.value;
-      if(v !== "" && v != null) attrs[k] = v;
-    });
-    const seed = $("seed").value.trim();
-    const payload = { category: CURRENT_CAT, attributes: attrs };
-    if(seed) payload.seed = seed;
-    return payload;
-  }
-
-  function setOutput(title, badge, text){
-    $("outTitle").textContent = title;
-    $("outBadge").textContent = badge;
-    $("outText").textContent = text;
-  }
-
-  function setLoading(on){
-    $("sp").style.display = on ? "inline-block" : "none";
-    $("btnGen").disabled = on;
-    $("shimmer").style.display = on ? "block" : "none";
-    if(on) setStatus("Генерация…", true);
-  }
-
-  async function ping(){
-    try{
-      const r = await fetch("/ping");
-      const j = await r.json();
-      $("pingText").textContent = j?.message ? j.message : "ok";
-      $("dot").style.background = "var(--accent2)";
-    }catch(e){
-      $("pingText").textContent = "offline";
-      $("dot").style.background = "var(--danger)";
+    function setStatus(msg, ok=true){
+      const el = $("status");
+      el.textContent = msg || "";
+      el.className = "status " + (ok ? "ok" : "err");
     }
-  }
 
-  async function generate(){
-    setLoading(true);
-    try{
-      const payload = getPayload();
-      const r = await fetch("/api/generate", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body: JSON.stringify(payload),
-      });
-      const j = await r.json();
-      if(!j.success){
-        setStatus(j.error || "Ошибка", false);
-        toast("Ошибка", j.error || "Не получилось");
-        return;
-      }
-      const item = j.results?.[0];
-      const desc = item?.description || "—";
-      setOutput("Готово", payload.category, desc);
-      setStatus("OK", true);
-      await loadHistory();
-    }catch(e){
-      setStatus("Ошибка: " + (e?.message || e), false);
-      toast("Ошибка", "Сервер может спать (free).");
-    }finally{
-      setLoading(false);
+    function setActiveTab(cat){
+      const tabs = [$("tabSmartphone"), $("tabSneakers"), $("tabGpu")].filter(Boolean);
+      tabs.forEach(t => t.classList.toggle("active", t.dataset.cat === cat));
     }
-  }
 
-  async function loadHistory(){
-    const filter = $("historyFilter").value;
-    const qs = new URLSearchParams();
-    qs.set("limit","20");
-    if(filter) qs.set("category", filter);
+    const SCHEMA = {
+      smartphone: [
+        {k:"brand", label:"Бренд", type:"text", ph:"Samsung"},
+        {k:"model", label:"Модель", type:"text", ph:"Galaxy A55"},
+        {k:"screen_size_in", label:"Экран, дюймы", type:"number", step:"0.1", ph:"6.5"},
+        {k:"ram_gb", label:"RAM, ГБ", type:"select", options:["4","6","8","12","16"]},
+        {k:"storage_gb", label:"Память, ГБ", type:"select", options:["64","128","256","512","1024"]},
+        {k:"battery_mah", label:"Батарея, мА·ч", type:"number", step:"1", ph:"5000"},
+        {k:"camera_mp", label:"Камера, Мп", type:"number", step:"1", ph:"50"},
+        {k:"key_feature", label:"Особенность", type:"text", ph:"NFC, быстрая зарядка"}
+      ],
 
-    const list = $("hList");
-    list.innerHTML = `<div class="badge">…</div>`;
+      sneakers: [
+        {k:"brand", label:"Бренд", type:"text", ph:"Nike"},
+        {k:"model", label:"Модель", type:"text", ph:"Air Zoom"},
+        {k:"purpose", label:"Назначение", type:"select", options:["города","бега","тренировок","повседневной носки","спорта"]},
+        {k:"size_eu", label:"Размер EU", type:"number", step:"1", ph:"42"},
+        {k:"material_upper", label:"Материал верха", type:"text", ph:"сетка/кожа"},
+        {k:"season", label:"Сезон", type:"select", options:["лето","демисезон","зима","всесезон"]},
+        {k:"color", label:"Цвет", type:"select", options:["черный","белый","серый","синий","бежевый","красный"]},
+        {k:"key_feature", label:"Особенность", type:"text", ph:"амортизация, лёгкие"}
+      ],
 
-    try{
-      const r = await fetch("/api/history?" + qs.toString());
-      const j = await r.json();
-      if(!j.success){
-        list.innerHTML = `<div class="badge">ошибка</div>`;
-        return;
-      }
-      const items = j.history || [];
-      if(items.length === 0){
-        list.innerHTML = `<div class="badge">пусто</div>`;
-        return;
-      }
+      gpu: [
+        {k:"manufacturer", label:"Производитель", type:"text", ph:"NVIDIA / AMD"},
+        {k:"version", label:"Версия", type:"text", ph:"RTX 4060 / RX 7600"},
+        {k:"platform", label:"Для, ПК/ноутбук", type:"select", options:["ПК","ноутбук"]},
+        {k:"cooling", label:"Охлаждение", type:"select", options:["1 вентилятор","2 вентилятора","3 вентилятора","турбина","жидкостное"]},
+        {k:"memory_gb", label:"Память, ГБ", type:"select", options:["2","4","6","8","10","12","16","20","24"]},
+        {k:"clock_mhz", label:"Частота, МГц", type:"number", step:"1", ph:"например 2460"}
+      ],
+    };
 
-      list.innerHTML = "";
-      items.forEach(it=>{
-        const div = document.createElement("div");
-        div.className = "hItem";
-        const cat = it.category || "—";
-        const dt = it.created_at ? new Date(it.created_at).toLocaleString() : "";
-        const text = it.generated_text || it.description || "";
+    let CURRENT_CAT = "smartphone";
 
-        div.innerHTML = `
-          <div class="hMeta">
-            <span class="badge">${cat}</span>
-            <span class="badge">${dt}</span>
-          </div>
-          <div class="hText"></div>
-        `;
-        div.querySelector(".hText").textContent = text;
+    function renderFields(cat){
+      const wrap = $("fields");
+      wrap.innerHTML = "";
 
-        div.addEventListener("click", ()=>{
-          setOutput("История", cat, text);
+      const list = SCHEMA[cat] || [];
+
+      for(let i = 0; i < list.length; i += 2){
+        const row = document.createElement("div");
+        row.className = "row";
+
+        [list[i], list[i + 1]].forEach(field => {
+          if(!field) return;
+
+          const box = document.createElement("div");
+
+          const lab = document.createElement("label");
+          lab.textContent = field.label;
+          box.appendChild(lab);
+
+          let el;
+
+          if(field.type === "select"){
+            el = document.createElement("select");
+
+            const opt0 = document.createElement("option");
+            opt0.value = "";
+            opt0.textContent = "— выбрать —";
+            el.appendChild(opt0);
+
+            (field.options || []).forEach(v => {
+              const o = document.createElement("option");
+              o.value = String(v);
+              o.textContent = String(v);
+              el.appendChild(o);
+            });
+          } else {
+            el = document.createElement("input");
+            el.type = field.type || "text";
+
+            if(field.step) el.step = field.step;
+            if(field.ph) el.placeholder = field.ph;
+          }
+
+          el.dataset.key = field.k;
+
+          box.appendChild(el);
+          row.appendChild(box);
         });
 
-        list.appendChild(div);
+        wrap.appendChild(row);
+      }
+    }
+
+    function getPayload(){
+      const attrs = {};
+
+      document.querySelectorAll("[data-key]").forEach(el => {
+        const k = el.dataset.key;
+        const v = el.value;
+
+        if(v !== "" && v != null){
+          attrs[k] = v;
+        }
       });
-    }catch(e){
-      list.innerHTML = `<div class="badge">offline</div>`;
-    }
-  }
 
-  function copyResult(){
-    const text = $("outText").textContent || "";
-    if(!text.trim()){
-      toast("Копирование", "Нечего копировать.");
-      return;
+      const seed = $("seed").value.trim();
+
+      const payload = {
+        category: CURRENT_CAT,
+        attributes: attrs
+      };
+
+      if(seed){
+        payload.seed = seed;
+      }
+
+      return payload;
     }
-    if(navigator.clipboard?.writeText){
-      navigator.clipboard.writeText(text).then(()=>{
-        toast("OK", "Скопировано.");
+
+    function setOutput(title, badge, text){
+      $("outTitle").textContent = title;
+      $("outBadge").textContent = badge;
+
+      // ВАЖНО: у textarea надо менять value, а не textContent
+      $("outText").value = text;
+    }
+
+    function getOutputText(){
+      return $("outText").value || "";
+    }
+
+    function setLoading(on){
+      $("sp").style.display = on ? "inline-block" : "none";
+      $("btnGen").disabled = on;
+      $("shimmer").style.display = on ? "block" : "none";
+
+      if(on){
+        setStatus("Генерация…", true);
+      }
+    }
+
+    async function ping(){
+      try{
+        const r = await fetch("/ping");
+        const j = await r.json();
+
+        $("pingText").textContent = j?.message ? j.message : "ok";
+        $("dot").style.background = "var(--accent2)";
+      }catch(e){
+        $("pingText").textContent = "offline";
+        $("dot").style.background = "var(--danger)";
+      }
+    }
+
+    async function generate(){
+      setLoading(true);
+
+      try{
+        const payload = getPayload();
+
+        const r = await fetch("/api/generate", {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const j = await r.json();
+
+        if(!j.success){
+          setStatus(j.error || "Ошибка", false);
+          toast("Ошибка", j.error || "Не получилось");
+          return;
+        }
+
+        const item = j.results?.[0];
+        const desc = item?.description || "—";
+
+        setOutput("Готово", payload.category, desc);
+        setStatus("OK. Теперь текст можно редактировать в окне результата.", true);
+
+        await loadHistory();
+      }catch(e){
+        setStatus("Ошибка: " + (e?.message || e), false);
+        toast("Ошибка", "Сервер может спать на free-тарифе.");
+      }finally{
+        setLoading(false);
+      }
+    }
+
+    async function loadHistory(){
+      const filter = $("historyFilter").value;
+
+      const qs = new URLSearchParams();
+      qs.set("limit", "20");
+
+      if(filter){
+        qs.set("category", filter);
+      }
+
+      const list = $("hList");
+      list.innerHTML = `<div class="badge">…</div>`;
+
+      try{
+        const r = await fetch("/api/history?" + qs.toString());
+        const j = await r.json();
+
+        if(!j.success){
+          list.innerHTML = `<div class="badge">ошибка</div>`;
+          return;
+        }
+
+        const items = j.history || [];
+
+        if(items.length === 0){
+          list.innerHTML = `<div class="badge">пусто</div>`;
+          return;
+        }
+
+        list.innerHTML = "";
+
+        items.forEach(it => {
+          const div = document.createElement("div");
+          div.className = "hItem";
+
+          const cat = it.category || "—";
+          const dt = it.created_at ? new Date(it.created_at).toLocaleString() : "";
+          const text = it.generated_text || it.description || "";
+
+          div.innerHTML = `
+            <div class="hMeta">
+              <span class="badge">${cat}</span>
+              <span class="badge">${dt}</span>
+            </div>
+            <div class="hText"></div>
+          `;
+
+          div.querySelector(".hText").textContent = text;
+
+          div.addEventListener("click", () => {
+            setOutput("История", cat, text);
+            setStatus("Текст из истории открыт. Его тоже можно редактировать перед копированием.", true);
+          });
+
+          list.appendChild(div);
+        });
+      }catch(e){
+        list.innerHTML = `<div class="badge">offline</div>`;
+      }
+    }
+
+    function copyResult(){
+      // ВАЖНО: копируем value из textarea, то есть уже отредактированный текст
+      const text = getOutputText();
+
+      if(!text.trim()){
+        toast("Копирование", "Нечего копировать.");
+        return;
+      }
+
+      if(navigator.clipboard?.writeText){
+        navigator.clipboard.writeText(text).then(() => {
+          toast("OK", "Скопировано.");
+        });
+      } else {
+        toast("Ошибка", "Clipboard недоступен.");
+      }
+    }
+
+    function clearForm(){
+      document.querySelectorAll("[data-key]").forEach(el => {
+        el.value = "";
       });
-    } else {
-      toast("Ошибка", "Clipboard недоступен.");
+
+      $("seed").value = "";
+
+      setOutput("Готово", "—", "Нажми “Сгенерировать”.");
+      setStatus("", true);
     }
-  }
 
-  function clearForm(){
-    document.querySelectorAll("[data-key]").forEach(el=> el.value = "");
-    $("seed").value = "";
-    setOutput("Готово", "—", "Нажми “Сгенерировать”.");
-    setStatus("", true);
-  }
+    function switchCategory(cat){
+      CURRENT_CAT = cat;
 
-  function switchCategory(cat){
-    CURRENT_CAT = cat;
+      setActiveTab(CURRENT_CAT);
+      renderFields(CURRENT_CAT);
+      loadHistory();
+    }
+
+    $("tabSmartphone").addEventListener("click", () => switchCategory("smartphone"));
+    $("tabSneakers").addEventListener("click", () => switchCategory("sneakers"));
+    $("tabGpu").addEventListener("click", () => switchCategory("gpu"));
+
+    $("btnGen").addEventListener("click", generate);
+    $("btnCopy").addEventListener("click", copyResult);
+    $("btnClear").addEventListener("click", clearForm);
+    $("historyFilter").addEventListener("change", loadHistory);
+
     setActiveTab(CURRENT_CAT);
     renderFields(CURRENT_CAT);
+    ping();
     loadHistory();
-  }
-
-  $("tabSmartphone").addEventListener("click", ()=> switchCategory("smartphone"));
-  $("tabSneakers").addEventListener("click", ()=> switchCategory("sneakers"));
-  $("tabGpu").addEventListener("click", ()=> switchCategory("gpu"));
-
-  $("btnGen").addEventListener("click", generate);
-  $("btnCopy").addEventListener("click", copyResult);
-  $("btnClear").addEventListener("click", clearForm);
-  $("historyFilter").addEventListener("change", loadHistory);
-
-  setActiveTab(CURRENT_CAT);
-  renderFields(CURRENT_CAT);
-  ping();
-  loadHistory();
-</script>
+  </script>
 </body>
 </html>
